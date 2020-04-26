@@ -67,7 +67,7 @@
       "type": "file",
       "source": "../assets/scripts",
       "destination": "/tmp",
-      "only": ["amazon-ebs"]
+      "only": ["aws"]
     },
     {
       "type": "shell",
@@ -76,7 +76,7 @@
         "sudo mv /tmp/scripts/* /opt/cloud-deploy-scripts",
         "sudo chmod +x -R /opt/cloud-deploy-scripts"
       ],
-      "only": ["amazon-ebs"]
+      "only": ["aws"]
     },
     {
       "type": "shell",
@@ -101,6 +101,7 @@
     },
     {
       "type": "shell",
+      "environment_vars": [ "PACKER_BUILD_NAME={{build_name}}" ],
       "script": "install-cloud-plugin.sh",
       "execute_command": "echo '' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
     },
